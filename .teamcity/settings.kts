@@ -175,8 +175,4 @@ object TodoImage : BuildType({
 object TodoBackendVcs : GitVcsRoot({
     name = "TodoBackendVcs"
     url = "https://github.com/antonarhipov/todoapp-backend"
-    authMethod = password {
-        userName = "antonarhipov"
-        password = "credentialsJSON:c184130a-35cb-4fbe-bbce-5c96ab51bd32"
-    }
 })

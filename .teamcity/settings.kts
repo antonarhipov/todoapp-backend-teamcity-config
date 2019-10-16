@@ -1,7 +1,6 @@
 import jetbrains.buildServer.configs.kotlin.v2018_2.*
 import jetbrains.buildServer.configs.kotlin.v2018_2.buildSteps.dockerCommand
 import jetbrains.buildServer.configs.kotlin.v2018_2.buildSteps.gradle
-import jetbrains.buildServer.configs.kotlin.v2018_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_2.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2018_2.vcs.GitVcsRoot
 
@@ -139,17 +138,14 @@ object TodoImage : BuildType({
 
     steps {
         dockerCommand {
-            enabled = false
             commandType = build {
                 source = path {
-                    path = "docker/Dockerfile"
+                    path = "./docker/Dockerfile"
                 }
+                contextDir = "."
                 namesAndTags = "antonarhipov/todo-backend:%build.number%"
                 commandArgs = "--pull"
             }
-        }
-        script {
-            scriptContent = "docker build -t antonarhipov/todo-backend:%build.number% --pull -f docker/Dockerfile ."
         }
     }
 
